@@ -1,11 +1,25 @@
 <div class="container">
-  <form id="form" novalidate>
+  <form id="form" novalidate action="/">
     <div class="mb-3">
       <label for="name" class="form-label">姓名</label>
       <input type="text" class="form-control" id="name" name="name" placeholder="請輸入你的姓名..." required>
+      <div class="invalid-feedback">This field is required</div>
+      <div class="valid-feedback">Good</div>
       {{!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> --}}
     </div>
   
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button id="submit" type="submit" class="btn btn-primary">Submit</button>
   </form>
 </div>
+
+<script>
+  const form = document.querySelector('#form')
+  const submitButton = document.querySelector('#submit')
+  submitButton.addEventListener('click', function onBtnClicked(event){
+    form.classList.add('was-validated')
+  })
+  form.addEventListener('submit', function onFormSubmitted(event){
+    event.preventDefault()
+    event.stopPropagation()
+  })
+</script>
